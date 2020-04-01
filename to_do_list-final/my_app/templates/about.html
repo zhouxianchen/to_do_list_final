@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}   {# Extra Resources Start #}
+   {{ form.media }}        {# Form required JS and CSS #}
+   {% endblock %}          {# Extra Resources End #}
+
+{% block 主体 %}
+      <br>
+
+      <h4>一款小巧、简洁的展示系统，帮你展示近期工作计划。</h4>
+
+
+    <form id="form_input" action="" method = "post">
+         <div class="form-row">
+        {%csrf_token %}
+             <div class="rol">
+                 {{ form.big_subject.label }}
+                 {{ form.big_subject }}
+                 {{ form.big_subject.errors.0 }}
+             </div> <br>
+             <div class="rol">
+                 {{ form.task.label }}
+                 {{ form.task }}
+                 {{ form.task.errors.0 }}
+             </div> <br>
+             <div class="rol">
+                 {{ form.activity.label }}
+                 {{ form.activity}}
+                 {{ form.activity.errors.0}}
+             </div> <br>
+             <div class="rol">
+                 {{ form.start_time.label }}
+                 {{ form.start_time }}
+                 {{ form.start_time.errors.0}}
+             </div> <br>
+             <div class="rol">
+                 {{ form.end_time.label }}
+                 {{ form.end_time }}
+                 {{ form.end_time.errors.0 }}
+             </div> <br>
+             <div class="rol">
+                 {{ form.progress.label }}
+                 {{ form.progress }}
+                 {{ form.progress.errors.0 }}
+             </div> <br>
+             <button class="btn btn-primary" type="submit"   /> 添加数据 <br>
+         </div>
+    </form>
+
+
+
+
+
+<table class="table table-hover">
+
+  <thead class="thead-light">
+            <tr align="center">
+                <th scope="col">序号</th>
+                <th scope="col">工作类别</th>
+                <th scope="col">活动名称</th>
+                <th scope="col">具体项目</th>
+                <th scope="col">开始时间</th>
+                <th scope="col">结束时间</th>
+                <th scope="col">工作进度</th>
+                <th scope="col" colspan="2"> 操作</th>
+            </tr>
+  </thead>
+    {% for activity in all_act %}
+    <tr>
+        <th scope="row"> {{forloop.counter}}</th>
+    <td rowspan="1">{{ activity.task.big_subject }}
+    </td>
+          <td rowspan="1">{{ activity.task }}
+    </td>
+        <td rowspan="1">{{ activity.name }}
+    </td>
+           <td rowspan="1">{{ activity.start_time }}
+    </td>
+          <td rowspan="1">{{ activity.end_time }}
+    </td>
+          <td rowspan="1" >{{ activity.progress }}
+    </td>
+        <td><a class= "text-info" href="{%url 'my_app:删除' activity.id %}"> 删除 </a>
+    </td>
+         <td><a class= "text-info" href="{%url 'my_app:编辑' activity.id %}"> 编辑 </a>
+    </td>
+
+    </tr>
+
+    {% endfor %}
+</table>
+
+    <nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="/about/?page={{ former_page }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {{ page_list|safe }}
+    <li>
+      <a href="/about/?page={{ next_page }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+  {% endblock 主体 %}
+
+
+
+{% block my_title %}
+      <br>
+      <h4>一款小巧、简1洁的日程展示系统，帮你展示日常事务。</h4>
+  {% endblock my_title %}
+
+{% block 关于高亮 %}
+active
+{% endblock 关于高亮 %}

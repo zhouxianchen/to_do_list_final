@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}{% static 'my_app/home.css' %}{% endblock css %}
+{% block 主体 %}
+<h4>一款小巧、简洁的展示系统，帮你展示近期工作计划。</h4>
+    <br>
+    <div class="table-responsive">
+{{警告}}
+<table class="table table-hover">
+
+  <thead class="thead-light">
+            <tr align="center">
+                <th scope="col">序号</th>
+              <th scope="col">工作类别</th>
+            <th scope="col">活动名称</th>
+            <th scope="col">具体项目</th>
+            <th scope="col">开始时间</th>
+                <th scope="col">结束时间</th>
+            <th scope="col">工作进度</th>
+            </tr>
+  </thead>
+     {% for activity in 清单 %}
+    <tr>
+        <th scope="row"> {{forloop.counter}}</th>
+    <td rowspan="1">{{ activity.task.big_subject }}
+    </td>
+          <td rowspan="1">
+              <a class="nav-link" href="{% url 'my_app:关于' %}">{{ activity.task }}</a>
+    </td>
+        <td rowspan="1">{{ activity.name }}
+    </td>
+           <td rowspan="1">{{ activity.start_time }}
+    </td>
+          <td rowspan="1">{{ activity.end_time }}
+    </td>
+          <td rowspan="1">{{ activity.progress }}
+    </td>
+
+    </tr>
+    {% endfor %}
+    <!--<tr ><td rowspan="6" valign="middle"> 管理工作</td>-->
+            <!--<tr ><td rowspan="2" valign="middle"> 学法规用法规活动</td>-->
+        <!--<td>动员部署</td>-->
+        <!--<td>2020年2月-3月</td> <td>已完成</td>-->
+        <!--</tr>-->
+            <!--<tr>-->
+            <!--<td >法规学习</td> <td>2020年6-10月</td>-->
+            <!--<td>50%</td>  </tr>-->
+<!--&lt;!&ndash;rowspan中必须指定要合并的列数目，是两行还是三行等等&ndash;&gt;-->
+            <!--<tr ><td  rowspan="3" align ="center" valign="middle">安全大检查</td>-->
+            <!--<td>动员部署</td>-->
+            <!--<td>2020年3月</td>-->
+            <!--<td>已完成</td>  			</tr>-->
+            <!--<tr> <td>安全隐患排查</td>-->
+            <!--<td>2020年6月-10月</td>-->
+            <!--<td>30%</td>  			</tr>-->
+                <!--<tr> <td>安全形式分析</td>-->
+            <!--<td>2020年6月-12月</td>-->
+            <!--<td>40%</td>  			</tr>-->
+</table>
+    </div>
+       {{ 用户的POST请求 }}
+
+  {% endblock 主体 %}
+
+        {% block 主页高亮 %}
+active
+{% endblock 主页高亮 %}
+

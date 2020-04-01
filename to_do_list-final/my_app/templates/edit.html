@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}{% static 'my_app/home.css' %}{% endblock css %}
+
+{% block 主体 %}
+
+  <form id="form_edit" action="" method = "post">
+         <div class="form-rol">
+        {%csrf_token %}
+
+
+    <div class="col">
+        具体活动 {{ current_form }} <br>
+                 </div>
+<button class="btn btn-primary" type="submit"   /> 修改 <br>
+
+             </div>
+
+    </form>
+
+
+{% endblock 主体 %}
+
+
